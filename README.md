@@ -1,4 +1,4 @@
-# EX-4-ADVANCED-ENCRYPTION-STANDARD-DES-ALGORITHM
+# EX-7-ADVANCED-ENCRYPTION-STANDARD-DES-ALGORITHM
 
 ## Aim:
   To use Advanced Encryption Standard (AES) Algorithm for a practical application like URL Encryption.
@@ -9,38 +9,56 @@
   3. It has a fixed block size of 128 bits, and a key size of 128, 192, or 256 bits. 
   4. AES operates on a 4 × 4 column-major order array of bytes, termed the state
 
-## PROGRAM: 
-    #include <stdio.h>
-    #include <string.h>
-
-
-      void xor_encrypt_decrypt(char *input, char *key) {
-    int input_len = strlen(input);
-    int key_len = strlen(key);
-
-    for (int i = 0; i < input_len; i++) {
-        input[i] = input[i] ^ key[i % key_len]; // XOR encryption
+## PROGRAM:
+```
+#include <stdio.h>
+#include <string.h>
+void encrypt(char *message, char *key, char *encryptedMessage, int messageLength) {
+    int keyLength = strlen(key);
+    for (int i = 0; i < messageLength; i++) {
+        encryptedMessage[i] = message[i] ^ key[i % keyLength];
     }
+    encryptedMessage[messageLength] = '\0';
+}
+void decrypt(char *encryptedMessage, char *key, char *decryptedMessage, int messageLength) {
+    int keyLength = strlen(key);
+    for (int i = 0; i < messageLength; i++) {
+        decryptedMessage[i] = encryptedMessage[i] ^ key[i % keyLength];
     }
-
-    int main() {
-    char url[] = "https://lms2.cse.saveetha.in/";
-    char key[] = "secretkey"; // Simple key for XOR encryption
-
-    printf("Original URL: %s\n", url);
-
-    // Encrypt the URL
-    xor_encrypt_decrypt(url, key);
-    printf("Encrypted URL: %s\n", url);
-
-    // Decrypt the URL (since XOR is reversible using the same key)
-    xor_encrypt_decrypt(url, key);
-    printf("Decrypted URL: %s\n", url);
-
+    decryptedMessage[messageLength] = '\0'; 
+}
+int main() {
+    char message[100];
+    char key[100];
+    printf("\n      *****Simulation of DES encryption and decryption*****\n\n");
+    printf("Enter the message to encrypt: ");
+    fgets(message, sizeof(message), stdin);
+    message[strcspn(message, "\n")] = '\0';  
+    printf("Enter the encryption key: ");
+    fgets(key, sizeof(key), stdin);
+    key[strcspn(key, "\n")] = '\0';  
+    int messageLength = strlen(message);
+    char encryptedMessage[100];
+    char decryptedMessage[100];
+    encrypt(message, key, encryptedMessage, messageLength);
+    printf("Original Message: %s\n", message);
+    printf("Encrypted Message: ");
+    for (int i = 0; i < messageLength; i++) {
+        printf("%02X ", (unsigned char)encryptedMessage[i]);
+    }
+    printf("\n");
+    decrypt(encryptedMessage, key, decryptedMessage, messageLength);
+    printf("Decrypted Message: %s\n", decryptedMessage);
     return 0;
-    }
+}
+
+```
 ## OUTPUT:
-![image](https://github.com/user-attachments/assets/77df58b7-3ffd-4d8d-83bc-9bd6243919ac)
+![Uploading Screenshot 2024-11-06 154829.png…]()
+
+
+
 
 ## RESULT: 
-Thus , to use Advanced Encryption Standard (AES) Algorithm for a practical application like URL Encryption is done successfully.
+
+Hence, for the given input text and key the DES algorithm is successfully simulated.
