@@ -1,4 +1,4 @@
-# EX-4-ADVANCED-ENCRYPTION-STANDARD-DES-ALGORITHM
+# EX 4 ADVANCED ENCRYPTION STANDARD ALGORITHM
 
 ## Aim:
   To use Advanced Encryption Standard (AES) Algorithm for a practical application like URL Encryption.
@@ -17,9 +17,8 @@ void xor_encrypt_decrypt(char *input, char *key) {
     int input_len = strlen(input);
     int key_len = strlen(key);
     for (int i = 0; i < input_len; i++) {
-        input[i] = input[i] ^ key[i % key_len]; // XOR encryption
+        input[i] = input[i] ^ key[i % key_len]; 
     }
-}
 int main() {
     char url[] = "https://www.google.com/";
     char key[] = "secretkey"; // Simple key for XOR encryption
@@ -31,7 +30,6 @@ int main() {
     return 0;
 } 
 ```
-
 ## OUTPUT:
 ![image](https://github.com/user-attachments/assets/8a5d17ce-e663-4c54-8efa-62fb90d85a9b)
 
